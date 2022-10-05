@@ -1,0 +1,18 @@
+{
+  "name": "com.monster.mobilesdk",
+  "version": "1.0.0",
+  "displayName": "Monster Mobile SDK",
+  "keywords": [
+    "MonsterSDK"
+  ],
+  "author": {
+    "name": "MonsterSDK",
+    "url": "https://github.com/quanpna-monster"
+  },
+  "description": "Monster Mobile SDK for ads manager and  game analytics\n\nDependencies and Third party SDK required:\nFirebaseSDK : Analytics, Crashlytics , DynamicLink, Messaging, RemoteConfig\nFacebookSDK\nAppsflyerSDK\nIronsourceSDK or MaxApplovingSDK base on maketing requirement",
+  "unity": "2019.3",
+  "dependencies": {
+    "com.google.external-dependency-manager": "",
+    "com.google.firebase.app": ""
+  }
+}
