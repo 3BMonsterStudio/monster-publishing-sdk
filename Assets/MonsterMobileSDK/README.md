@@ -112,22 +112,29 @@ Log event gameplay: Trong code đã để sẵn hàm log gameplay cơ bản ph�
     GAMEPLAY_STATE.SKIP : trạng thái bỏ qua level
 
 Log event IAP
+
     GameAnalytics.LogPurchase(UnityEngine.Purchasing.Product product, IAP_STATE iapState)
 
 Log show rate us 
+
     GameAnalytics.LogRateUsShow()
 
 Log show rate us 5 sao 
+
     GameAnalytics.LogRateUs5Stars()
 
 Log bắt đầu tutorial 
+
     GameAnalytics.LogTutorialBegin()
 
 Log kết thúc tutorial 
+
     GameAnalytics.LogTutorialComplete()
 
 Log click button
+
     GameAnalytics.LogEventButton(string nameScreen, string nameButton)
+    
 
 ## Cách sử dụng InAppPurchase
 
