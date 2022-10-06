@@ -156,25 +156,7 @@ public class GameAnalytics
         };
 
         LogEventFirebase("ads_impression", parameters);
-        LogRoasAd(adRevenue,currency);
-        string eventTypeName = "ads_revenue_inter";
-        switch (adType)
-        {
-            case AdType.videorewarded:
-                eventTypeName = "ads_revenue_rewarded";
-                break;
-            case AdType.inter:
-                eventTypeName = "ads_revenue_inter";
-                break;
-            case AdType.banner:
-                eventTypeName = "ads_revenue_banner";
-                break;
-            case AdType.native:
-                eventTypeName = "ads_revenue_native";
-                break;
-        }
-        //SingularSDK.CustomRevenue(eventTypeName,country,adRevenue);
-        // Log them event ms total_roas_ad_word
+        LogRoasAd(adRevenue, currency);
     }
 
     public static string FIREBASE_EVENT_REVENUE_P_USER = $"ad_impression_{RemoteConfigManager.GetString(StringConstants.RC_GAME_NAME)}";
@@ -240,7 +222,7 @@ public class GameAnalytics
             {
                 FirebaseAnalytics.SetUserId(MonsterPlayerPrefs.PlayerId.ToString());
                 AppsFlyer.setCustomerUserId(MonsterPlayerPrefs.PlayerId.ToString());
-               // SingularSDK.SetCustomUserId(MonsterPlayerPrefs.PlayerId.ToString());
+                // SingularSDK.SetCustomUserId(MonsterPlayerPrefs.PlayerId.ToString());
             });
         }
     }
@@ -263,7 +245,7 @@ public class GameAnalytics
 
     public static void LogGamePlayData(int level, GAMEPLAY_STATE gameState, object param = null, string timeProgress = null)
     {
-        int levelAmount = (int) RemoteConfigManager.GetDouble(StringConstants.RC_CHECKING_LEVEL_AMOUNT);
+        int levelAmount = (int)RemoteConfigManager.GetDouble(StringConstants.RC_CHECKING_LEVEL_AMOUNT);
         switch (gameState)
         {
             case GAMEPLAY_STATE.START_LEVEL:
@@ -289,15 +271,15 @@ public class GameAnalytics
                 }
 
                 // if (param != null)
-                    LogEventFirebase("stage_end", new Parameter[]
-                    {
+                LogEventFirebase("stage_end", new Parameter[]
+                {
                         new Parameter("type_pass", "Win"),
                         new Parameter("level", level),
                         new Parameter("time_progress", timeProgress),
-            
 
-                        
-                    });
+
+
+                });
 
                 Dictionary<string, string> LevelAchievedEvent = new Dictionary<string, string>();
                 LevelAchievedEvent.Add(AFInAppEvents.LEVEL, level.ToString());
@@ -314,22 +296,22 @@ public class GameAnalytics
                 }
 
                 // if (param != null)
-                    LogEventFirebase("stage_end", new Parameter[]
-                    {
+                LogEventFirebase("stage_end", new Parameter[]
+                {
                         new Parameter("type_pass", "Skip"),
                         new Parameter("level", level),
 
-                    });
+                });
                 break;
             case GAMEPLAY_STATE.LOSE:
                 // if (param != null)
-                    LogEventFirebase("stage_end", new Parameter[]
-                    {
+                LogEventFirebase("stage_end", new Parameter[]
+                {
                         new Parameter("type_pass", "Lose"),
                         new Parameter("level", level),
                         new Parameter("time_progress", timeProgress),
-                      
-                    });
+
+                });
                 break;
             default:
                 break;
@@ -398,7 +380,7 @@ public class GameAnalytics
         }
         catch (Exception e)
         {
-
+            Debug.LogError(e.Message);
         }
 
     }
@@ -448,72 +430,11 @@ public class GameAnalytics
         GameAnalytics.LogEventFirebase($"stage_{level}_fail_before_first_pass", parameters.ToArray());
     }
 
-    private const string REWARD_VIEW = "reward_view";
-    public static void LogRewarded(int type)
-    {
-        List<Parameter> parameters = new List<Parameter>();
-        parameters.Add(new Parameter("type", type.ToString()));
-        GameAnalytics.LogEventFirebase(REWARD_VIEW, parameters.ToArray());
-    }
-
     private const string BUTTON_CLICK = "button_click";
     public static void LogEventButton(string nameScreen, string nameButton)
     {
         List<Parameter> parameters = new List<Parameter>();
         parameters.Add(new Parameter("button_pos", $"{nameScreen}_{nameButton}"));
-        GameAnalytics.LogEventFirebase(REWARD_VIEW, parameters.ToArray());
-    }
-    public static void LogEarnVirtualCurrency(int value, string source = "", string sourceItem = "", int level = 0, string eventxMas = "")
-    {
-        Parameter[] firebaseParams = new Parameter[4];
-        firebaseParams[0] = new Parameter("value", value);
-        firebaseParams[1] = new Parameter("source", source);
-        firebaseParams[2] = new Parameter("source_item", sourceItem);
-        firebaseParams[3] = new Parameter("level", level);
-
-        GameAnalytics.LogEventFirebase("earn_virtual_currency", firebaseParams);
-    }
-
-    public static void LogSpendVirtualCurrency(string itemGame, int coins, int level = 0, string categorize = "", string eventmas = "")
-    {
-        Parameter[] firebaseParams = new Parameter[4];
-        firebaseParams[0] = new Parameter("item_name", itemGame);
-        firebaseParams[1] = new Parameter("coins", coins);
-        firebaseParams[2] = new Parameter("categorize", categorize);
-        firebaseParams[3] = new Parameter("level", level);
-        GameAnalytics.LogEventFirebase("spend_virtual_currency", firebaseParams);
-    }
-
-    //Log percent param
-    private const string LOG_PARAM_X5_PERCENT = "x5_percent";
-    private const string LOG_PARAM_MERGED_PERCENT = "merged_percent";
-    private const string LOG_PARAM_CHEST_PERCENT = "collect_chest_percent";
-
-    public static void LogX5Percent(int level, float percent)
-    {
-        Parameter[] firebaseParams = new Parameter[2];
-        firebaseParams[0] = new Parameter("level", level);
-        firebaseParams[1] = new Parameter("x5_percent", percent);
-        LogEventFirebase(LOG_PARAM_X5_PERCENT, firebaseParams);
-
-    }
-
-    public static void LogMergedPercent(int level, float percent)
-    {
-        Parameter[] firebaseParams = new Parameter[2];
-        firebaseParams[0] = new Parameter("level", level);
-        firebaseParams[1] = new Parameter("merged_percent", percent);
-        LogEventFirebase(LOG_PARAM_MERGED_PERCENT, firebaseParams);
-
-    }
-    
-    public static void LogChestPercent(int level, float percent)
-    {
-        Parameter[] firebaseParams = new Parameter[2];
-        firebaseParams[0] = new Parameter("level", level);
-        firebaseParams[1] = new Parameter("chest_percent", percent);
-        
-        LogEventFirebase(LOG_PARAM_CHEST_PERCENT, firebaseParams);
-
+        GameAnalytics.LogEventFirebase(BUTTON_CLICK, parameters.ToArray());
     }
 }

@@ -30,9 +30,9 @@ public class AdsNetworksConfig
     public long interInterval = 25;
     public long interDelayAfterRewarded = 20;
     public string[] positions;
-    public string[] adNetworks = new string[] {"ironsource", "maxapplovin"};
-    public float[] adsNetworksShowRate = new float[] {0.5f, 0.5f};
-    public string[] logNetwork = new string[] {"firebase"};
+    public string[] adNetworks = new string[] { "ironsource", "maxapplovin" };
+    public float[] adsNetworksShowRate = new float[] { 0.5f, 0.5f };
+    public string[] logNetwork = new string[] { "firebase" };
 }
 
 public class AdsController : MonoBehaviour, IAdsListener
@@ -42,7 +42,7 @@ public class AdsController : MonoBehaviour, IAdsListener
     public static string currentRewardPosition;
     public static bool isShowing;
 
-    
+
     public const string SOURCE = "AdsController";
 
     private UnityAction onInterstitialClosed;
@@ -113,7 +113,7 @@ public class AdsController : MonoBehaviour, IAdsListener
 #endif
     }
 
-    
+
 
     public bool IsInitialized()
     {
@@ -277,7 +277,7 @@ public class AdsController : MonoBehaviour, IAdsListener
             }
         }
 
-        if (tempAds.Count>0)
+        if (tempAds.Count > 0)
         {
             foreach (var ads in tempAds)
             {
@@ -482,16 +482,16 @@ public class AdsController : MonoBehaviour, IAdsListener
     }
 
 
-    public void ShowInterstitial(UnityAction interstitialClosedAction, 
+    public void ShowInterstitial(UnityAction interstitialClosedAction,
         int positionId)
     {
-        ShowInterstitial(interstitialClosedAction, 
-            interstitialClosedAction, 
+        ShowInterstitial(interstitialClosedAction,
+            interstitialClosedAction,
             positionId);
     }
 
 
-    public void ShowInterstitial(UnityAction interstitialShowFailedAction, 
+    public void ShowInterstitial(UnityAction interstitialShowFailedAction,
         UnityAction interstitialClosedAction,
         int positionType)
     {
@@ -576,20 +576,21 @@ public class AdsController : MonoBehaviour, IAdsListener
         }
     }
 
-    public void ShowRewardedVideo(UnityAction<bool> rewardedClosedAction, 
-        int rewardedPositionId, 
+    public void ShowRewardedVideo(UnityAction<bool> rewardedClosedAction,
+        int rewardedPositionId,
         string rewaredPositionName)
     {
-        ShowRewardedVideo(() => { }, 
-            rewardedClosedAction, 
-            rewardedPositionId, 
-            rewaredPositionName);
+        ShowRewardedVideo(() => { },
+        rewardedClosedAction,
+        rewardedPositionId,
+        rewaredPositionName);
     }
 
 
-    public void ShowRewardedVideo(UnityAction rewardedShowFailedAction, UnityAction<bool> rewardedClosedAction,
-        int rewardedPositionId,
-        string rewardedPositionName)
+    public void ShowRewardedVideo(UnityAction rewardedShowFailedAction,
+    UnityAction<bool> rewardedClosedAction,
+    int rewardedPositionId,
+    string rewardedPositionName)
     {
         if (isShowing)
         {
@@ -606,7 +607,7 @@ public class AdsController : MonoBehaviour, IAdsListener
         this.onRewardedClosed = rewardedClosedAction;
         justShowAReward = true;
         SetupBeforeAds();
-     
+
 #if UNITY_EDITOR
         OnRewardedAdsClose(SOURCE, true);
         return;
@@ -623,7 +624,7 @@ public class AdsController : MonoBehaviour, IAdsListener
 
         if (!adsNetworksList[0].ShowRewardedVideo())
         {
-            
+
             adsNetworksList[0].LoadRewardedVideo();
             if (adsNetworksList.Count > 1)
             {

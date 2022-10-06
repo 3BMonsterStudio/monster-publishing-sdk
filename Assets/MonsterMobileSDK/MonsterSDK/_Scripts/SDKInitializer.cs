@@ -26,11 +26,6 @@ public class SDKInitializer : MonoBehaviour, IAppsFlyerConversionData
 {
     private static string MEDIA_SOURCE = "media_source";
     private static string CAMPAIGN_SOURCE = "campaign_id";
-
-
-
-
-    //public List<ThirdPartySDK> initOrder;
     private Dictionary<ThirdPartySDK, UnityAction> sdkInitDic;
     private int currentInitSdkIndex = -1;
 
@@ -43,7 +38,7 @@ public class SDKInitializer : MonoBehaviour, IAppsFlyerConversionData
     [SerializeField] string UWPAppID;
     [SerializeField] bool isAppsflyerDebug;
     [SerializeField] bool getConversionData;
-    
+
 
     private bool isFirebaseInitialized;
     bool tokenSent = false;
@@ -179,11 +174,11 @@ public class SDKInitializer : MonoBehaviour, IAppsFlyerConversionData
         GameAnalytics.isFirebaseInitialized = true;
         RemoteConfigManager.isFirebaseInitialized = true;
         Firebase.FirebaseApp app = Firebase.FirebaseApp.DefaultInstance;
-        
+
         RemoteConfigManager.AddDefaultBeforeInitialize(StringConstants.RC_GAME_NAME, gameNameForEvent);
         beforeInitializeRemoteConfigEvent?.Invoke();
         RemoteConfigManager.InitializeRemoteConfig();
-        
+
         DynamicLinks.DynamicLinkReceived += DynamicLinks_DynamicLinkReceived;
 
         Firebase.Messaging.FirebaseMessaging.TokenReceived += FirebaseMessaging_TokenReceived;
@@ -386,7 +381,7 @@ public class SDKInitializer : MonoBehaviour, IAppsFlyerConversionData
         }
         SDKLogsPrefs.DayFromInstall = (int)deltaTime.TotalDays;
         GameAnalytics.LogFirebaseUserProperty("session_id", $"ss{SDKLogsPrefs.SessionID}:dfi{SDKLogsPrefs.DayFromInstall}:d{SDKLogsPrefs.EngageDay}");
-        
+
     }
 
 
