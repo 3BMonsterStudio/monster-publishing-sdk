@@ -1,14 +1,3 @@
-# Unity Open App Detail Settings 
-## Instal Package via UPM
-
-Add this line to UPM Window for installing this plugins
-
-    https://github.com/3BMonsterStudio/unity-native-open-app-setting.git#{release_version}
-
-## How To Use
-Call this function for open detail app setting activity
-
-    OpenAppSettingsSDK.OpenAppSettingDetailPopup();
 # Unity Monster Mobile SDK
 Bộ tool hỗ trợ quản lý show quảng cáo, log event analytics và IAP, cùng một số công cụ nhỏ liên quan
 ## Requirement
