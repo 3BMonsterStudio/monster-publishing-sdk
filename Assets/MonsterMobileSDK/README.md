@@ -56,21 +56,14 @@ Lưu ý trường hợp sử dụng Max Apploving thì ta cần làm thêm một
 
 ![Paste admob app id vào cửa sổ intergration manager của MAX SDK](./_Images/Step6_settingMAX.PNG?raw=true "Paste admob app id vào cửa sổ intergration manager của MAX SDK")
 
-Trong Inspector ScriptableObject SDKDataIdSetting, vào sửa lại script SDKDataAssets bằng cách thêm các key tương ứng vào enum InterstitialPositionType và enum RewardedPositionType, nhớ gắn đúng giá trị int cho InterPositionType để setup trên dashboard và phục vụ việc tracking.
+![Thêm các vị trí show inter theo id](./_Images/Step7_settingAdsConfig.PNG?raw=true "Thêm các vị trí show inter theo id")
 
-![Sửa lại script SDKDataAssets bằng cách thêm các key tương ứng](./_Images/Step7_settingPositionType.PNG?raw=true "Sửa lại script SDKDataAssets bằng cách thêm các key tương ứng")
-
-Sau khi run game một lần trong thư mục resource sẽ tạo ra file setting SO cho Intertitial là AudienceAdsManager. Ta chỉnh lại các loại inter sẽ được show, khoảng delay giữa inter, reward theo yêu cầu
-
-![Sửa lại config quảng cáo](./_Images/Step9_settingAdsConfig.PNG?raw=true "Sửa lại config quảng cáo")
-
-Vào dashboard của game để điều chỉnh các thông số tương ứng https://dashboard.gamesontop.com/games. Thêm các vị trí show inter theo đúng id được gắn trong class enum vừa chỉnh sửa ở client
-
-![Thêm các vị trí show inter theo đúng id được gắn trong enum ở client](./_Images/Step8_interPosition.PNG?raw=true "Thêm các vị trí show inter theo id")
+Ta có thể chỉnh lại các thông số mặc định như loại inter sẽ được show, khoảng delay giữa inter, reward theo yêu cầu
 
 ## Cách sử dụng Ads Controller
 Định nghĩa id các vị trí hiển thị inter (defaultInterstitialPositons) trong AudienceAdsManager SO
 Gọi hàm show rewarded và truyền vào enum RewardedPositionType tương ứng đã được tạo từ trước
+
     AdsController.Instances.ShowRewardedVideo(() => {
         // Xử lý reward không show được
     },
