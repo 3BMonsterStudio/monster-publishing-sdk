@@ -243,7 +243,7 @@ public class GameAnalytics
     }
 
 
-    public static void LogGamePlayData(int level, GAMEPLAY_STATE gameState, object param = null, string timeProgress = null)
+    public static void LogGamePlayData(int level, GAMEPLAY_STATE gameState)
     {
         int levelAmount = (int)RemoteConfigManager.GetDouble(StringConstants.RC_CHECKING_LEVEL_AMOUNT);
         switch (gameState)
@@ -253,10 +253,7 @@ public class GameAnalytics
                 {
                     string eventname = $"stage_{level}_first_start";
                     setLevelFirstStart(level);
-                    LogEventFirebase(eventname, new Parameter[]
-                    {
-                        // new Parameter("t1", t1)
-                    });
+                    LogFirebaseDirectly(eventname);
                     Debug.Log(eventname);
                 }
                 LogEventFirebase("stage_start", new Parameter[] { new Parameter("level", level) });
@@ -275,10 +272,6 @@ public class GameAnalytics
                 {
                         new Parameter("type_pass", "Win"),
                         new Parameter("level", level),
-                        new Parameter("time_progress", timeProgress),
-
-
-
                 });
 
                 Dictionary<string, string> LevelAchievedEvent = new Dictionary<string, string>();
@@ -295,12 +288,10 @@ public class GameAnalytics
                     Debug.Log(eventname + "SKIP");
                 }
 
-                // if (param != null)
                 LogEventFirebase("stage_end", new Parameter[]
                 {
                         new Parameter("type_pass", "Skip"),
                         new Parameter("level", level),
-
                 });
                 break;
             case GAMEPLAY_STATE.LOSE:
@@ -309,8 +300,6 @@ public class GameAnalytics
                 {
                         new Parameter("type_pass", "Lose"),
                         new Parameter("level", level),
-                        new Parameter("time_progress", timeProgress),
-
                 });
                 break;
             default:
@@ -321,7 +310,6 @@ public class GameAnalytics
     private static bool checkLevelFirstStart(int level)
     {
         bool hasStart = PlayerPrefs.GetInt($"stage_{level}_first_start", 0) == 1;
-        //Debug.Log($"stage_{level}_map_{currentChapter.ToLower()}_first_start_{hasStart}");
         return hasStart;
     }
     private static void setLevelFirstStart(int level)
@@ -331,7 +319,6 @@ public class GameAnalytics
     private static bool checkLevelFirstPass(int level)
     {
         bool hasPass = PlayerPrefs.GetInt($"stage_{level}_first_pass", 0) == 1;
-        //Debug.Log($"stage_{level}_map_{currentChapter.ToLower()}_first_pass_{hasPass}");
         return hasPass;
     }
     private static void setLevelFirstPass(int level)
