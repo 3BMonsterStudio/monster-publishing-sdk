@@ -104,8 +104,8 @@ Log event lên AppsFlyer
     GameAnalytics.LogFirebaseDirectly("event_name");
 
 Log event gameplay: Trong code đã để sẵn hàm log gameplay cơ bản phục vụ tracking từ cả AppsFlyer và Firebase
+    
     GameAnalytics.LogGamePlayData(int level, GAMEPLAY_STATE gameState, object param = null, string timeProgress = null)
-
     GAMEPLAY_STATE.WIN : trạng thái thắng của game
     GAMEPLAY_STATE.LOSE : trạng thái thua của game
     GAMEPLAY_STATE.START_LEVEL : trạng thái bắt đầu level
@@ -134,7 +134,7 @@ Log kết thúc tutorial
 Log click button
 
     GameAnalytics.LogEventButton(string nameScreen, string nameButton)
-    
+
 
 ## Cách sử dụng InAppPurchase
 
