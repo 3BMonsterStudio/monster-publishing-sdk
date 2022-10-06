@@ -267,7 +267,6 @@ public class GameAnalytics
                     Debug.Log(eventname + "WIN");
                 }
 
-                // if (param != null)
                 LogEventFirebase("stage_end", new Parameter[]
                 {
                         new Parameter("type_pass", "Win"),
@@ -295,7 +294,6 @@ public class GameAnalytics
                 });
                 break;
             case GAMEPLAY_STATE.LOSE:
-                // if (param != null)
                 LogEventFirebase("stage_end", new Parameter[]
                 {
                         new Parameter("type_pass", "Lose"),
