@@ -81,6 +81,10 @@ Gọi hàm show banner
     AdsController.Instances.ShowBanner(bool isvisible)
 
 ## Cách sử dụng GameAnalytics
+Setup tên game trên RemoteConfig
+
+    Tên param : game_name_for_event
+    Kiểu dữ liệu : string
 
 Log event lên firebase
 
