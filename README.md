@@ -85,6 +85,12 @@ Setup tên game trên RemoteConfig
 
     Tên param : game_name_for_event
     Kiểu dữ liệu : string
+    Note : tên game ko có dấu cách (theo quy tắc đặt tên event của firebase)
+Setup kpi threshhol
+
+    Tên param : kpi_threshold
+    Kiểu dữ liệu : string
+    Default : 0.00001
 
 Log event lên firebase
 
